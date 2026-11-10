@@ -21,13 +21,25 @@
 
 ## 安装（Edge）
 
-1. 下载本仓库，或解压 `dist/zjuamin-1.0.2.zip` 到任意固定目录（例如 `D:\Extensions\ZJUAMin`）。
+1. 下载本仓库，或解压 `dist/zjuamin-1.0.3.zip` 到任意固定目录（例如 `D:\Extensions\ZJUAMin`）。
 2. 在 Edge 地址栏打开 `edge://extensions/`。
 3. 打开左下角「开发人员模式」。
 4. 点击「加载解压缩的扩展」，选择包含 `manifest.json` 的那个文件夹（不是它的上级目录）。
 5. 建议点击扩展图标旁的「图钉」，把 ZJUAMin 固定到工具栏。
 
 > 也适用于 Chrome / 其他 Chromium 内核浏览器（`chrome://extensions/` 同样操作）。
+
+## 升级与扩展 ID（1.0.3 起）
+
+从 1.0.3 起，`manifest.json` 里固定了扩展公钥 `key`，扩展 ID 恒为 `fjoibomnemdolfpdofgpkaeikplbgkdk`，与安装目录无关。以后覆盖升级（例如把新版文件覆盖到原安装目录）后，在 `edge://extensions/` 点一下「重新加载」即可，已保存的账户不受影响。
+
+从 1.0.2 或更早版本（未固定 `key`、按安装路径生成 ID）升级时需要**一次性迁移**：
+
+1. 旧版账户数据仍保存在本机 Edge 的扩展存储里，没有被删除，只是新版扩展 ID 不同、读不到它。
+2. 在 `edge://extensions/` 移除旧的 ZJUAMin 卡片，再「加载解压缩的扩展」选择新版目录。
+3. 打开 ZJUAMin 设置页 →「导入账户」，导入之前恢复 / 导出的 JSON 备份即可。
+
+维护者注意：扩展私钥**不在仓库内**，请单独备份。丢失私钥后重新生成的 `key` 会导致扩展 ID 变化，已有账户又需要重新导入。
 
 ## 首次使用
 
@@ -66,6 +78,7 @@ ZJUAMin 不重新实现这套加密，而是：
 ## 隐私与安全
 
 - 所有账户数据保存在本机的 `chrome.storage.local`（扩展独立存储区），**不会上传、不会同步到微软账户**。
+- 账户数据跟随 Edge 的扩展存储，不会写到 `C:\Users\<用户名>\.ZJUAM-in` 这类用户目录；从 1.0.3 起固定扩展 ID 只保证覆盖升级不换存储区，清除浏览器数据 / 移除扩展并勾选清除数据仍会丢失，请定期「导出账户」备份。
 - 密码以**明文**保存在本机：Edge 扩展没有系统级密钥链可用，这是同类自动登录扩展的普遍做法。请勿在共用 / 公共电脑上保存浙大密码。
 - 导出的 JSON 备份同样包含明文密码，请妥善保管、及时删除。
 - 扩展权限只有 `storage`（保存账户）和 `scripting`（在用户主动点「立即填充并登录」时向已打开的认证页补注入脚本），host 权限仅 `https://zjuam.zju.edu.cn/*`。
@@ -135,11 +148,12 @@ python tools/make_icons.py
 ### 打包
 
 ```powershell
-Compress-Archive -Path manifest.json,background.js,shared,content,popup,options,icons,README.md -DestinationPath dist/zjuamin-1.0.2.zip -Force
+Compress-Archive -Path manifest.json,background.js,shared,content,popup,options,icons,README.md -DestinationPath dist/zjuamin-1.0.3.zip -Force
 ```
 
 ## 版本
 
+- 1.0.3 — 固定扩展 ID（`manifest.json` 增加 `key`）：覆盖升级、更换安装目录、重新加载扩展都不再导致已保存账户「消失」；文档补充一次性迁移与私钥备份说明。
 - 1.0.2 — 自动提交更快：填完密码后约 0.15 秒就点击「登录」（此前固定等待 350ms 后再轮询验证码 1.2 秒，间隔约 1.5 秒）；E2E 新增「填充到提交间隔」断言（44 项）。
 - 1.0.1 — 修复：真实站点错误提示会被填表动作清空、失败保护因此失效的问题；密码错误后跨标签页 30 分钟暂停该账户的自动提交；设置页切换账户 / 开关后已打开的认证页即时同步；快捷键失败时工具栏给出反馈；导入/存储去重规则统一；E2E 补真实断言。
 - 1.0.0 — 首个版本：多账户、自动填充 / 自动提交、验证码与失败保护、导入导出。
