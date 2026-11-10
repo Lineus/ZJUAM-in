@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ZJUAMin 设置</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="page-header">
+        <img class="logo" src="../icons/icon128.png" alt="ZJUAMin" />
+        <div class="headings">
+          <h1>ZJUAMin 设置</h1>
+          <p>浙大统一身份认证 · 多账户自动登录</p>
+        </div>
+        <span id="versionText" class="version"></span>
+      </header>
+
+      <div class="notice">
+        <strong>安全说明</strong>
+        <p>
+          密码以明文形式保存在本机 Edge 扩展存储（<code>chrome.storage.local</code>）中，不会上传，也不会同步到微软账户。
+          请勿在共用电脑上保存浙大密码；导出的备份文件同样包含明文密码，请妥善保管。
+        </p>
+      </div>
+
+      <main class="grid">
+        <section class="panel">
+          <div class="panel-head">
+            <h2>我的账户</h2>
+            <span id="accountCount" class="count"></span>
+          </div>
+          <div id="accountList" class="account-list"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h2 id="editorTitle">添加账户</h2>
+            <button id="cancelEdit" class="link-btn" type="button" hidden>取消编辑</button>
+          </div>
+          <form id="accountForm" class="form" novalidate>
+            <label class="field">
+              <span class="field-label">备注名称 <em>可选</em></span>
+              <input
+                id="fieldLabel"
+                type="text"
+                maxlength="40"
+                placeholder="例如：个人账号 / 实验室账号"
+                autocomplete="off"
+              />
+            </label>
+            <label class="field">
+              <span class="field-label">学号 / 工号</span>
+              <input
+                id="fieldUsername"
+                type="text"
+                maxlength="120"
+                placeholder="例如：3200100000"
+                autocomplete="off"
+                required
+              />
+            </label>
+            <label class="field">
+              <span class="field-label">统一身份认证密码</span>
+              <span class="password-row">
+                <input
+                  id="fieldPassword"
+                  type="password"
+                  placeholder="登录 zjuam 的密码"
+                  autocomplete="new-password"
+                  required
+                />
+                <button id="togglePassword" class="ghost" type="button">显示</button>
+              </span>
+            </label>
+            <label class="check-row">
+              <input id="fieldMakeActive" type="checkbox" />
+              <span>保存后设为当前账户</span>
+            </label>
+            <p id="formError" class="form-error" role="alert"></p>
+            <div class="form-actions">
+              <button id="saveAccountBtn" class="primary" type="submit">保存账户</button>
+              <button id="resetFormBtn" class="secondary" type="button">清空</button>
+            </div>
+          </form>
+        </section>
+      </main>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>自动登录</h2>
+        </div>
+        <div class="settings-grid">
+          <label class="switch-row">
+            <span class="switch-copy">
+              <strong>自动填充</strong>
+              <small>识别到统一身份认证页面后，自动填入当前账户的学号与密码。</small>
+            </span>
+            <input type="checkbox" id="setAutoFill" />
+            <span class="switch" aria-hidden="true"></span>
+          </label>
+          <label class="switch-row">
+            <span class="switch-copy">
+              <strong>自动提交</strong>
+              <small>填充后自动点击页面上的「登录」，交给页面自身加密并提交。</small>
+            </span>
+            <input type="checkbox" id="setAutoSubmit" />
+            <span class="switch" aria-hidden="true"></span>
+          </label>
+          <label class="switch-row">
+            <span class="switch-copy">
+              <strong>勾选「记住我」</strong>
+              <small>登录时顺带勾选页面上的「记住我」复选框（可选）。</small>
+            </span>
+            <input type="checkbox" id="setRememberMe" />
+            <span class="switch" aria-hidden="true"></span>
+          </label>
+          <label class="switch-row">
+            <span class="switch-copy">
+              <strong>页面提示</strong>
+              <small>在认证页底部显示「已填充 / 已提交」等轻提示。</small>
+            </span>
+            <input type="checkbox" id="setShowToast" />
+            <span class="switch" aria-hidden="true"></span>
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>数据</h2>
+        </div>
+        <div class="data-actions">
+          <button id="exportBtn" class="secondary" type="button">导出账户（JSON）</button>
+          <button id="importBtn" class="secondary" type="button">导入账户</button>
+          <input id="importFile" type="file" accept="application/json,.json" hidden />
+          <button id="clearBtn" class="danger" type="button">清空全部数据</button>
+        </div>
+        <p class="muted">导入时按「学号 / 工号」去重合并，不会覆盖已有账户。</p>
+      </section>
+
+      <footer class="page-footer">
+        <p>使用方式：在浏览器工具栏固定 ZJUAMin 图标 → 打开任意浙大服务跳转到统一身份认证页 → 自动填写并登录。</p>
+        <p>临时手动触发可使用快捷键 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>U</kbd>，或在扩展弹窗中点击「立即填充并登录」。</p>
+      </footer>
+    </div>
+
+    <div id="toast" class="toast" role="status"></div>
+
+    <script src="../shared/storage.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

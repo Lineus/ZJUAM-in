@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ZJUAMin</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <img class="logo" src="../icons/icon48.png" alt="ZJUAMin" />
+        <div class="titles">
+          <h1>ZJUAMin</h1>
+          <p>浙大统一身份认证 · 自动登录</p>
+        </div>
+        <span id="connBadge" class="conn conn--checking" title="当前标签页连接状态">
+          <i class="conn-dot"></i>
+          <span id="connText">检测中</span>
+        </span>
+      </header>
+
+      <section class="card">
+        <div class="card-head">
+          <label class="card-label" for="accountSelect">当前账户</label>
+          <button id="openOptions" class="link-btn" type="button">管理账户</button>
+        </div>
+        <select id="accountSelect" class="select" aria-label="选择当前账户"></select>
+        <p id="accountHint" class="hint">正在读取账户…</p>
+      </section>
+
+      <section class="card switches">
+        <label class="switch-row">
+          <span class="switch-copy">
+            <strong>自动填充</strong>
+            <small>打开认证页即填入学号与密码</small>
+          </span>
+          <input type="checkbox" id="autoFill" />
+          <span class="switch" aria-hidden="true"></span>
+        </label>
+        <div class="divider"></div>
+        <label class="switch-row">
+          <span class="switch-copy">
+            <strong>自动提交</strong>
+            <small>填充后自动点击「登录」</small>
+          </span>
+          <input type="checkbox" id="autoSubmit" />
+          <span class="switch" aria-hidden="true"></span>
+        </label>
+      </section>
+
+      <button id="fillNow" class="primary" type="button">立即填充并登录</button>
+      <p id="statusLine" class="status" role="status"></p>
+
+      <footer class="footer">
+        <span class="lock-note">密码仅保存在本机扩展存储</span>
+        <span id="versionText" class="version"></span>
+      </footer>
+    </div>
+
+    <script src="../shared/storage.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

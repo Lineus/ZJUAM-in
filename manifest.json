@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "ZJUAMin — 浙大统一身份认证自动登录",
+  "short_name": "ZJUAMin",
+  "version": "1.0.2",
+  "description": "识别浙江大学统一身份认证页面（https://zjuam.zju.edu.cn/），自动填充所选账户的学号/工号与密码并提交登录。支持多账户管理与快速切换。",
+  "minimum_chrome_version": "102",
+  "permissions": ["storage", "scripting"],
+  "host_permissions": ["https://zjuam.zju.edu.cn/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://zjuam.zju.edu.cn/*"],
+      "js": ["shared/storage.js", "content/content.js"],
+      "css": ["content/content.css"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "action": {
+    "default_title": "ZJUAMin — 浙大统一身份认证自动登录",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "commands": {
+    "fill-now": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+U"
+      },
+      "description": "立即填充并登录当前认证页"
+    }
+  }
+}
