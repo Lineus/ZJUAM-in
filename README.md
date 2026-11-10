@@ -148,7 +148,7 @@ python tools/make_icons.py
 ### 打包
 
 ```powershell
-Compress-Archive -Path manifest.json,background.js,shared,content,popup,options,icons,README.md -DestinationPath dist/zjuamin-1.0.3.zip -Force
+Compress-Archive -Path manifest.json,background.js,shared,content,popup,options,icons,README.md,LICENSE -DestinationPath dist/zjuamin-1.0.3.zip -Force
 ```
 
 ## 版本
@@ -157,3 +157,7 @@ Compress-Archive -Path manifest.json,background.js,shared,content,popup,options,
 - 1.0.2 — 自动提交更快：填完密码后约 0.15 秒就点击「登录」（此前固定等待 350ms 后再轮询验证码 1.2 秒，间隔约 1.5 秒）；E2E 新增「填充到提交间隔」断言（44 项）。
 - 1.0.1 — 修复：真实站点错误提示会被填表动作清空、失败保护因此失效的问题；密码错误后跨标签页 30 分钟暂停该账户的自动提交；设置页切换账户 / 开关后已打开的认证页即时同步；快捷键失败时工具栏给出反馈；导入/存储去重规则统一；E2E 补真实断言。
 - 1.0.0 — 首个版本：多账户、自动填充 / 自动提交、验证码与失败保护、导入导出。
+
+## 许可证
+
+本项目以 [MIT 协议](LICENSE) 开源，可自由使用、修改与分发，保留版权声明即可。
