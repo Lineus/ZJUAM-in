@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "ZJUAMin — 浙大统一身份认证自动登录",
-  "short_name": "ZJUAMin",
+  "name": "ZJUAM-in — 浙大统一身份认证自动登录",
+  "short_name": "ZJUAM-in",
   "version": "1.0.3",
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtGttTiXnF11ls5aZyHz5+VTzlMszFT+h8CHcFCBeFkOwCQlUazL8uLhr+0Oy8o70t6TBk6hWFTj+VQ0b4vEe71K1NQkXhAxVwZD91BL1Fgv2l1IvNvYQosEst1VHS0dIdm9U5QA+SYXLiRxa11PSceUQABLfJhZsAdvcKIBQRybK2Mk8DxgF8d/+rOL2FI66w8FLXJZWSHfU9RePbfGXrAYRD4bIBd36EI3kcMW4G4sbn5k3kuVZM+8IIoDIOyT4gFPbe576MNQHvOLa2RolpN3xRuhnhtBjM0bezUEN+1JqYQHnNoF/afnB4LyEsAYP1j7bTBe2pZMwXrfaOfQPpQIDAQAB",
   "description": "识别浙江大学统一身份认证页面（https://zjuam.zju.edu.cn/），自动填充所选账户的学号/工号与密码并提交登录。支持多账户管理与快速切换。",
@@ -33,7 +33,7 @@
     }
   ],
   "action": {
-    "default_title": "ZJUAMin — 浙大统一身份认证自动登录",
+    "default_title": "ZJUAM-in — 浙大统一身份认证自动登录",
     "default_popup": "popup/popup.html",
     "default_icon": {
       "16": "icons/icon16.png",

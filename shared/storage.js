@@ -1,5 +1,5 @@
 /*
- * ZJUAMin · 共享存储层
+ * ZJUAM-in · 共享存储层
  *
  * 经典脚本（非 ES module）：content script、popup、options 都通过
  * <script> / manifest 顺序加载，暴露全局 `ZJUAM`。

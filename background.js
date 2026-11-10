@@ -1,5 +1,5 @@
 /*
- * ZJUAMin · MV3 service worker
+ * ZJUAM-in · MV3 service worker
  *
  * 职责很少：
  *   1. 安装 / 升级时把存储结构初始化成当前 schema；
@@ -35,7 +35,7 @@ function flashBadge(text, color, title) {
     badgeTimer = setTimeout(function () {
       try {
         chrome.action.setBadgeText({ text: '' });
-        chrome.action.setTitle({ title: 'ZJUAMin — 浙大统一身份认证自动登录' });
+        chrome.action.setTitle({ title: 'ZJUAM-in — 浙大统一身份认证自动登录' });
       } catch (e) {
         /* ignore */
       }
@@ -47,9 +47,9 @@ function flashBadge(text, color, title) {
 }
 
 function failureTitle(error) {
-  if (error === 'NO_ACCOUNT') return 'ZJUAMin：还没有配置账户，点击扩展图标添加';
-  if (error === 'NO_FORM') return 'ZJUAMin：当前页没有认证表单，请刷新后重试';
-  return 'ZJUAMin：请先打开浙大统一身份认证登录页';
+  if (error === 'NO_ACCOUNT') return 'ZJUAM-in：还没有配置账户，点击扩展图标添加';
+  if (error === 'NO_FORM') return 'ZJUAM-in：当前页没有认证表单，请刷新后重试';
+  return 'ZJUAM-in：请先打开浙大统一身份认证登录页';
 }
 
 async function fillActiveTab() {
@@ -58,11 +58,11 @@ async function fillActiveTab() {
     const tabs = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
     tab = tabs && tabs[0];
   } catch (e) {
-    flashBadge('!', '#C62828', 'ZJUAMin：无法读取当前标签页');
+    flashBadge('!', '#C62828', 'ZJUAM-in：无法读取当前标签页');
     return;
   }
   if (!tab || typeof tab.id !== 'number') {
-    flashBadge('!', '#C62828', 'ZJUAMin：当前没有可用的标签页');
+    flashBadge('!', '#C62828', 'ZJUAM-in：当前没有可用的标签页');
     return;
   }
 
@@ -93,7 +93,7 @@ async function fillActiveTab() {
     flashBadge(
       '√',
       '#2E7D32',
-      'ZJUAMin：已使用「' +
+      'ZJUAM-in：已使用「' +
         (response.accountLabel || '当前账户') +
         '」' +
         (response.submitted ? '填充并提交' : '填充（未自动提交）')
@@ -106,7 +106,7 @@ async function fillActiveTab() {
 chrome.commands.onCommand.addListener((command) => {
   if (command === 'fill-now') {
     fillActiveTab().catch(function () {
-      flashBadge('!', '#C62828', 'ZJUAMin：快捷键执行失败');
+      flashBadge('!', '#C62828', 'ZJUAM-in：快捷键执行失败');
     });
   }
 });

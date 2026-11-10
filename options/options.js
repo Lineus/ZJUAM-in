@@ -1,5 +1,5 @@
 /*
- * ZJUAMin · 设置页
+ * ZJUAM-in · 设置页
  *
  * 账户增删改查、当前账户切换、导入导出与自动登录开关。
  * 所有数据都保存在 chrome.storage.local（仅本机）。

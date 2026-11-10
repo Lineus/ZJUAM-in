@@ -1,4 +1,4 @@
-# ZJUAMin — 浙大统一身份认证自动登录
+# ZJUAM-in — 浙大统一身份认证自动登录
 
 一个只做一件事的 Edge / Chromium 扩展：**当页面是浙江大学统一身份认证（`https://zjuam.zju.edu.cn/`）时，自动填入你选定的账户的学号 / 工号与密码，并自动点击「登录」。**
 
@@ -21,11 +21,11 @@
 
 ## 安装（Edge）
 
-1. 下载本仓库，或解压 `dist/zjuamin-1.0.3.zip` 到任意固定目录（例如 `D:\Extensions\ZJUAMin`）。
+1. 下载本仓库，或解压 `dist/zjuamin-1.0.3.zip` 到任意固定目录（例如 `D:\Extensions\ZJUAM-in`）。
 2. 在 Edge 地址栏打开 `edge://extensions/`。
 3. 打开左下角「开发人员模式」。
 4. 点击「加载解压缩的扩展」，选择包含 `manifest.json` 的那个文件夹（不是它的上级目录）。
-5. 建议点击扩展图标旁的「图钉」，把 ZJUAMin 固定到工具栏。
+5. 建议点击扩展图标旁的「图钉」，把 ZJUAM-in 固定到工具栏。
 
 > 也适用于 Chrome / 其他 Chromium 内核浏览器（`chrome://extensions/` 同样操作）。
 
@@ -36,14 +36,14 @@
 从 1.0.2 或更早版本（未固定 `key`、按安装路径生成 ID）升级时需要**一次性迁移**：
 
 1. 旧版账户数据仍保存在本机 Edge 的扩展存储里，没有被删除，只是新版扩展 ID 不同、读不到它。
-2. 在 `edge://extensions/` 移除旧的 ZJUAMin 卡片，再「加载解压缩的扩展」选择新版目录。
-3. 打开 ZJUAMin 设置页 →「导入账户」，导入之前恢复 / 导出的 JSON 备份即可。
+2. 在 `edge://extensions/` 移除旧的 ZJUAM-in 卡片，再「加载解压缩的扩展」选择新版目录。
+3. 打开 ZJUAM-in 设置页 →「导入账户」，导入之前恢复 / 导出的 JSON 备份即可。
 
 维护者注意：扩展私钥**不在仓库内**，请单独备份。丢失私钥后重新生成的 `key` 会导致扩展 ID 变化，已有账户又需要重新导入。
 
 ## 首次使用
 
-1. 点击工具栏的 ZJUAMin 图标 → 「添加第一个账户」（或「管理账户」）。
+1. 点击工具栏的 ZJUAM-in 图标 → 「添加第一个账户」（或「管理账户」）。
 2. 填写备注名（可选，例如「个人账号」）、学号 / 工号和统一身份认证密码，保存。
 3. 若这是唯一账户，它会自动成为「当前」账户；有多个账户时，在弹窗下拉框或设置页「设为当前」切换。
 4. 打开任意需要浙大登录的服务，跳转到 zjuam 认证页后会看到页面自动填写并登录。
@@ -67,7 +67,7 @@
 
 zjuam 登录页的密码不是明文提交：页面上的 `login.js` 会先向 `/cas/v2/getPubKey` 取 RSA 公钥，把密码字符反转后做学校自己的 RSA 加密，再提交表单。
 
-ZJUAMin 不重新实现这套加密，而是：
+ZJUAM-in 不重新实现这套加密，而是：
 
 1. content script 识别页面上的 `#username` / `#password` / `#dl`（只匹配 `https://zjuam.zju.edu.cn/*`）；
 2. 用原生 setter 写入学号与密码，并派发 `input` / `change` 事件；
@@ -94,7 +94,7 @@ ZJUAMin 不重新实现这套加密，而是：
 ## 目录结构
 
 ```
-ZJUAMin/
+ZJUAM-in/
 ├─ manifest.json          MV3 清单
 ├─ background.js          service worker：初始化、快捷键、兜底注入
 ├─ shared/storage.js      账户 / 设置的读写与规范化（全局 ZJUAM）

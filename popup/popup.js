@@ -1,4 +1,4 @@
-/* ZJUAMin · popup */
+/* ZJUAM-in · popup */
 (function () {
   'use strict';
 

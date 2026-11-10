@@ -1,5 +1,5 @@
 /*
- * ZJUAMin · content script
+ * ZJUAM-in · content script
  *
  * 仅在 https://zjuam.zju.edu.cn/ 下由 manifest 注入。职责：
  *   1. 识别统一身份认证登录表单；
@@ -109,7 +109,7 @@
       if (!info) return;
       if (!settings.autoFill) return;
       if (!account) {
-        toast('尚未配置 ZJUAMin 账户：点击浏览器工具栏的扩展图标添加', 'warn', 7000);
+        toast('尚未配置 ZJUAM-in 账户：点击浏览器工具栏的扩展图标添加', 'warn', 7000);
         return;
       }
 

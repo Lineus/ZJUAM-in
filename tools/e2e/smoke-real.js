@@ -223,7 +223,7 @@ async function waitForEval(page, expression, predicate, timeoutMs, label) {
 }
 
 async function main() {
-  console.log('== ZJUAMin 真实站点冒烟（只填充、不提交）==');
+  console.log('== ZJUAM-in 真实站点冒烟（只填充、不提交）==');
   if (!fs.existsSync(EDGE)) throw new Error('找不到 Edge: ' + EDGE);
 
   fs.mkdirSync(TEMP_ROOT, { recursive: true });

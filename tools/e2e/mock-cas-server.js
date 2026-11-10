@@ -85,7 +85,7 @@ function renderLoginPage(mode, errorText) {
       <div class="logo">ZJU</div>
       <div>
         <h1>浙江大学统一身份认证</h1>
-        <p class="sub">ZJUAMin 端到端测试 · mock CAS</p>
+        <p class="sub">ZJUAM-in 端到端测试 · mock CAS</p>
       </div>
     </div>
     <form id="fm1" action="/cas/login" method="post" autocomplete="off">

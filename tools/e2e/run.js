@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * ZJUAMin 端到端测试（零依赖）。
+ * ZJUAM-in 端到端测试（零依赖）。
  *
  * 做什么：
  *   1. 把扩展复制到临时目录，生成固定扩展 ID 的测试副本，匹配 http://127.0.0.1:*；
@@ -461,7 +461,7 @@ async function testOptionsAndAccounts(extBaseUrl) {
 
   const page = await createPage(extBaseUrl + '/options/options.html');
   await waitPageLoaded(page);
-  await waitForEval(page, 'document.title', 'ZJUAMin 设置', 15000, '设置页标题');
+  await waitForEval(page, 'document.title', 'ZJUAM-in 设置', 15000, '设置页标题');
 
   // 固定 profile 会被复用，先清空上一轮可能留下的数据
   await evaluate(page, 'chrome.storage.local.clear().then(function(){ return true; })');
@@ -934,7 +934,7 @@ async function cleanup() {
 /* ───────────────────────── 主流程 ───────────────────────── */
 
 async function main() {
-  console.log('== ZJUAMin E2E ==');
+  console.log('== ZJUAM-in E2E ==');
   console.log('Edge: ' + EDGE);
   if (!fs.existsSync(EDGE)) throw new Error('找不到 Edge: ' + EDGE);
 
